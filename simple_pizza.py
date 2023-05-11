@@ -4,9 +4,6 @@ from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtCore import QSize
 from payment import Ui_payment_window
 
-
-
-
 class Ui_simple_pizza_window(object):
 
     def open_payment(self):
@@ -14,10 +11,6 @@ class Ui_simple_pizza_window(object):
         self.payment_ui = Ui_payment_window()
         self.payment_ui.setupUi(self.payment)
         self.payment.show()
-
-
-
-
 
     def setupUi(self, simple_pizza_window):
         simple_pizza_window.setObjectName("simple_pizza_window")

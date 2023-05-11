@@ -35,7 +35,7 @@ class Ui_payment_window(object):
         font.setWeight(75)
         self.pushButton.setFont(font)
         self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget, clicked =lambda : self.count())
         self.pushButton_2.setGeometry(QtCore.QRect(224, 60, 161, 23))
         font = QtGui.QFont()
         font.setPointSize(10)
@@ -83,8 +83,7 @@ class Ui_payment_window(object):
         font.setWeight(75)
         self.label_7.setFont(font)
         self.label_7.setObjectName("label_7")
-        self.button09 = QtWidgets.QPushButton(self.centralwidget, clicked =lambda : self.count())
-
+        self.button09 = QtWidgets.QPushButton(self.centralwidget)
         self.button09.setGeometry(QtCore.QRect(40, 310, 341, 23))
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -158,17 +157,29 @@ class Ui_payment_window(object):
         self.button09.setText(_translate("payment_window", "Print Reciept"))
 
     def count(self):
+        bill = self.protein
 
-        bill = float(self.tb_2.text())
+
+
         tip = bill * 0.10
         self.label_9.setText(str("%.2f" % tip))
+
         tax  =bill * 0.07
         self.label_10.setText(str("%.2f" % tax))
+
         total_bill= bill + tax + tip
         self.label_8.setText(str(total_bill))
 
+
     def paid_cash(self):
         self.tb_2.setEnabled(True)
+
+
+    def receive_data(self, vegetable, protein):
+
+        self.vegetable = vegetable
+        self.protein = protein
+
 
 if __name__ == "__main__":
     import sys

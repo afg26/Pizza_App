@@ -11,6 +11,8 @@ class Ui_make_your_own_window(object):
         self.payment = QtWidgets.QMainWindow()
         self.payment_ui = Ui_payment_window()
         self.payment_ui.setupUi(self.payment)
+        self.get_data()
+        self.payment_ui.receive_data(self.vegetable, self.protein)
         self.payment.show()
 
     def setupUi(self, make_your_own_window):
@@ -36,7 +38,7 @@ class Ui_make_your_own_window(object):
         self.label_5.setGeometry(QtCore.QRect(660, 490, 231, 16))
         self.label_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.label_5.setObjectName("label_5")
-        self.button07 = QtWidgets.QPushButton(self.centralwidget, clicked= lambda : self.fetch_data)
+        self.button07 = QtWidgets.QPushButton(self.centralwidget, clicked= lambda : self.open_payment())
         self.button07.setGeometry(QtCore.QRect(660, 560, 231, 23))
         self.button07.setObjectName("button07")
         self.frame = QtWidgets.QFrame(self.centralwidget)
@@ -140,10 +142,6 @@ class Ui_make_your_own_window(object):
         self.retranslateUi(make_your_own_window)
         QtCore.QMetaObject.connectSlotsByName(make_your_own_window)
 
-
-
-
-
     def retranslateUi(self, make_your_own_window):
         _translate = QtCore.QCoreApplication.translate
         make_your_own_window.setWindowTitle(_translate("make_your_own_window", "Make Your Own"))
@@ -170,12 +168,23 @@ class Ui_make_your_own_window(object):
         self.checkbox11.setText(_translate("make_your_own_window", "Chili"))
         self.checkbox13.setText(_translate("make_your_own_window", "Pineapples"))
         self.checkbox14.setText(_translate("make_your_own_window", "Sliced"))
-        self.checkbox15.setText(_translate("make_your_own_window", "Chicken"))
+        self.checkbox15.setText(_translate("make_your_own_window", "UnSliced"))
 
-class Get_data(Ui_make_your_own_window):
+    def get_data(self):
+        self.protein = 0.0
+        self.vegetable = 0.0
 
-    def fetch_data(self):
+        # checkbox04 is chicken
+        if self.checkbox04.isChecked() == True:
+            self.protein = 8.50
 
+        #checbox03 is beef
+        if self.checkbox03.isChecked() == True:
+            self.protein += 10.50
+
+        #checkbox05 is Fish
+        if self.checkbox05.isChecked() == True:
+            self.protein = 11.50
 
 
 
@@ -192,10 +201,6 @@ if __name__ == "__main__":
     make_your_own_window = QtWidgets.QMainWindow()
     ui = Ui_make_your_own_window()
     ui.setupUi(make_your_own_window)
-
-
-
-
 
     make_your_own_window.show()
     sys.exit(app.exec_())
