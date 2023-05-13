@@ -12,7 +12,7 @@ class Ui_make_your_own_window(object):
         self.payment_ui = Ui_payment_window()
         self.payment_ui.setupUi(self.payment)
         self.get_data()
-        self.payment_ui.receive_data(self.vegetable, self.protein)
+        self.payment_ui.receive_data(self.vegetable, self.protein,self.sauce,self.type)
         self.payment.show()
 
     def setupUi(self, make_your_own_window):
@@ -170,9 +170,12 @@ class Ui_make_your_own_window(object):
         self.checkbox14.setText(_translate("make_your_own_window", "Sliced"))
         self.checkbox15.setText(_translate("make_your_own_window", "UnSliced"))
 
+
     def get_data(self):
         self.protein = 0.0
         self.vegetable = 0.0
+        self.sauce = ""
+        self.type = ""
 
         # checkbox04 is chicken
         if self.checkbox04.isChecked() == True:
@@ -185,14 +188,48 @@ class Ui_make_your_own_window(object):
         #checkbox05 is Fish
         if self.checkbox05.isChecked() == True:
             self.protein = 11.50
+            
+        #checkboxes for vegetables
+        if self.checkbox06.isChecked() == True:
+            self.vegetable += 0.75
 
+        if self.checkbox07.isChecked() == True:
+            self.vegetable += 0.75
 
+        if self.checkbox08.isChecked() == True:
+            self.vegetable += 0.75
 
+        if self.checkbox09.isChecked() == True:
+            self.vegetable += 0.75
 
+        if self.checkbox10.isChecked() == True:
+            self.vegetable += 0.75
 
+        if self.checkbox11.isChecked() == True:
+            self.vegetable += 0.75
 
+        if self.checkbox12.isChecked() == True:
+            self.vegetable += 0.75
 
+        if self.checkbox13.isChecked() == True:
+            self.vegetable += 0.75
 
+        #radio buttons for types of sauces
+        if self.r_button04.isChecked() == True:
+            self.sauce = "Spicy"
+
+        if self.r_button05.isChecked() == True:
+            self.sauce = "Mild"
+
+        if self.r_button06.isChecked() == True:
+            self.sauce = "Normal"
+
+        # Checkboxes for types
+        if self.checkbox14.isChecked() == True:
+            self.type = "Sliced"
+
+        if self.checkbox15.isChecked() == True:
+            self.type = "UnSliced"
 
 
 if __name__ == "__main__":

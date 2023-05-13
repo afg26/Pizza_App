@@ -10,6 +10,8 @@ class Ui_simple_pizza_window(object):
         self.payment = QtWidgets.QMainWindow()
         self.payment_ui = Ui_payment_window()
         self.payment_ui.setupUi(self.payment)
+        self.get_data2()
+        self.payment_ui.receive_data2(self.sauce2, self.type2)
         self.payment.show()
 
     def setupUi(self, simple_pizza_window):
@@ -86,6 +88,27 @@ class Ui_simple_pizza_window(object):
         self.checkbox02.setText(_translate("simple_pizza_window", "Unsliced"))
         self.checkbox01.setText(_translate("simple_pizza_window", "Sliced"))
         self.label03_2.setText(_translate("simple_pizza_window", "How Do You Want Your Pizza"))
+    def get_data2(self):
+
+        self.sauce2 = ""
+        self.type2 = ""
+
+        #radio buttons for types of sauces
+        if self.r_button01.isChecked() == True:
+            self.sauce2 = "Spicy"
+
+        if self.r_button02.isChecked() == True:
+            self.sauce2 = "Mild"
+
+        if self.r_button03.isChecked() == True:
+            self.sauce2 = "Normal"
+
+        # radio buttons for types of pizza
+        if self.checkbox01.isChecked() == True:
+            self.type2 = "Sliced"
+
+        if self.checkbox02.isChecked() == True:
+            self.type2 = "UnSliced"
 
 
 if __name__ == "__main__":

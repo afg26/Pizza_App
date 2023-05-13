@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtCore import QSize
 from  make_your_own import Ui_make_your_own_window
 from simple_pizza import Ui_simple_pizza_window
+from about_window import Ui_about_window
 
 
 
@@ -16,6 +17,11 @@ class Ui_MainWindow(object):
     def open_make_your_own(self):
         self.make_your = main_make_your_own
         self.make_your.show()
+
+    def about_window(self):
+        self.__about = about
+        self.__about.show()
+
 
     def close_window(self):
         self.MainWindow.close()
@@ -47,7 +53,7 @@ class Ui_MainWindow(object):
         self.button02 = QtWidgets.QPushButton(self.frame, clicked = lambda: self.open_simple_pizza())
         self.button02.setGeometry(QtCore.QRect(190, 10, 141, 28))
         self.button02.setObjectName("button02")
-        self.button03 = QtWidgets.QPushButton(self.frame)
+        self.button03 = QtWidgets.QPushButton(self.frame, clicked = lambda: self.about_window())
         self.button03.setGeometry(QtCore.QRect(360, 10, 141, 28))
         self.button03.setObjectName("button03")
         self.button04 = QtWidgets.QPushButton(self.frame)
@@ -90,6 +96,9 @@ if __name__ == "__main__":
     simple_pizza_ui = Ui_simple_pizza_window()
     simple_pizza_ui.setupUi(main_simple_pizza)
 
+    about = QtWidgets.QMainWindow()
+    about_window_ui = Ui_about_window()
+    about_window_ui.setupUi(about)
 
 
     MainWindow.show()

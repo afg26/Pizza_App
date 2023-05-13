@@ -1,0 +1,6 @@
+You Have Chosen a Spicy Sauce
+You Have Chosen Your Pizza to be Sliced
+Bill            :    9.5
+Tip             :    0.95
+7 % tax         :    0.67
+Total_Bill      :    11.12

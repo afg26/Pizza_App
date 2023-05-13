@@ -83,7 +83,7 @@ class Ui_payment_window(object):
         font.setWeight(75)
         self.label_7.setFont(font)
         self.label_7.setObjectName("label_7")
-        self.button09 = QtWidgets.QPushButton(self.centralwidget)
+        self.button09 = QtWidgets.QPushButton(self.centralwidget, clicked =lambda : self.print_receipt())
         self.button09.setGeometry(QtCore.QRect(40, 310, 341, 23))
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -91,10 +91,22 @@ class Ui_payment_window(object):
         font.setWeight(75)
         self.button09.setFont(font)
         self.button09.setObjectName("button09")
+
+        self.button10 = QtWidgets.QPushButton(self.centralwidget, clicked =lambda : self.simple_pizza())
+        self.button10.setGeometry(QtCore.QRect(40, 340, 341, 23))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(70)
+        self.button10.setFont(font)
+        self.button10.setObjectName("button10")
+
         self.tb_2 = QtWidgets.QLineEdit(self.centralwidget)
         self.tb_2.setGeometry(QtCore.QRect(220, 150, 161, 20))
         self.tb_2.setObjectName("tb_2")
         self.tb_2.setEnabled(False)
+
+
         self.label_8 = QtWidgets.QLabel(self.centralwidget)
         self.label_8.setGeometry(QtCore.QRect(220, 120, 161, 21))
         self.label_8.setFrameShape(QtWidgets.QFrame.Panel)
@@ -154,31 +166,166 @@ class Ui_payment_window(object):
         self.label_5.setText(_translate("payment_window", "7% S-Tax]"))
         self.label_6.setText(_translate("payment_window", "Total Bill"))
         self.label_7.setText(_translate("payment_window", "Change "))
-        self.button09.setText(_translate("payment_window", "Print Reciept"))
+        self.button09.setText(_translate("payment_window", "Print Receipt"))
+        self.button10.setText(_translate("payment_window", "Print Receipt For Simple Pizza "))
 
     def count(self):
-        bill = self.protein
+
+        self.bill = round((self.protein + self.vegetable) , 2)
+        self.label_8.setText(str("%.2f" % self.bill))
+
+        self.tip = round((self.bill * 0.01) ,2)
+        self.label_9.setText(str("%.2f" % self.tip))
+
+        self.tax  =round((self.bill * 0.07), 2)
+        self.label_10.setText(str("%.2f" % self.tax))
+
+        self.total_bill= round((self.bill + self.tax + self.tip) , 2)
+        self.label_11.setText(str("%.2f" % self.total_bill))
+        self.tb_2.setEnabled(True)
+
+    def simple_pizza(self):
+
+        self.label_8.setText("")
+        self.label_9.setText("")
+        self.label_10.setText("")
+        self.label_11.setText("")
+        self.tb_2.setEnabled(False)
+
+        f = open("receipt.txt", "w")
+
+        if self.sauce2 == "Spicy":
+
+            f.write("You Have Chosen a Spicy Sauce" + "\n")
+
+            self.bill1 = 9.50
+
+            self.label_8.setText(str("%.2f" % self.bill1))
+
+            self.tip1 = round((self.bill1 * 0.10) , 2)
+            self.label_9.setText(str("%.2f" % self.tip1))
+
+            self.tax1 = round((self.bill1 * 0.07), 2)
+            self.label_10.setText(str("%.2f" % self.tax1))
+
+            self.total_bill1 = round((self.bill1 + self.tax1 + self.tip1) , 2)
+            self.label_11.setText(str("%.2f" % self.total_bill1))
+            self.tb_2.setEnabled(True)
+
+        elif self.sauce2 == "Mild" :
+            f.write("You Have Chosen a Mild Sauce" + "\n")
+
+            self.bill1 = 9.50
+
+            self.label_8.setText(str("%.2f" % self.bill1))
+
+            self.tip1 = round((self.bill1 * 0.10) , 2)
+            self.label_9.setText(str("%.2f" % self.tip1))
+
+            self.tax1 = round((self.bill1 * 0.07), 2)
+            self.label_10.setText(str("%.2f" % self.tax1))
+
+            self.total_bill1 = round((self.bill1 + self.tax1 + self.tip1) , 2)
+            self.label_11.setText(str("%.2f" % self.total_bill1))
+            self.tb_2.setEnabled(True)
+
+
+        elif self.sauce2 == "Normal" :
+            f.write("You Have Chosen a Normal Sauce" + "\n")
+
+            self.bill1 = 9.50
+
+            self.label_8.setText(str("%.2f" % self.bill1))
+
+            self.tip1 = round((self.bill1 * 0.10) , 2)
+            self.label_9.setText(str("%.2f" % self.tip1))
+
+            self.tax1 = round((self.bill1 * 0.07), 2)
+            self.label_10.setText(str("%.2f" % self.tax1))
+
+            self.total_bill1 = round((self.bill1 + self.tax1 + self.tip1) , 2)
+            self.label_11.setText(str("%.2f" % self.total_bill1))
+            self.tb_2.setEnabled(True)
+
+
+        if self.type2 == "Sliced":
+            f.write("You Have Chosen Your Pizza to be Sliced" + "\n")
+        if self.type2 == "UnSliced":
+            f.write("You Have Chosen Your Pizza to be UnSliced" + "\n")
 
 
 
-        tip = bill * 0.10
-        self.label_9.setText(str("%.2f" % tip))
+        tip1 = self.label_9.text()
+        tax1 = str(self.tax1)
+        bill1 = str(self.bill1)
+        total1 = str(self.total_bill1)
+        
 
-        tax  =bill * 0.07
-        self.label_10.setText(str("%.2f" % tax))
+        f.write("Bill            :    " + bill1 + "\n")
+        f.write("Tip             :    " + tip1 + "\n")
+        f.write("7 % tax         :    " + tax1 + "\n")
+        f.write("Total_Bill      :    " + total1 + "\n")
+        f.close()
 
-        total_bill= bill + tax + tip
-        self.label_8.setText(str(total_bill))
+        # open and read the file after the overwriting:
+        f = open("receipt.txt", "r")
+        print(f.read())
+
 
 
     def paid_cash(self):
-        self.tb_2.setEnabled(True)
+        self.change = float(self.tb_2.text()) - float(self.total_bill)
+        self.label_12.setText(str("%.2f" % self.change))
+
+    def print_receipt(self):
+
+        f = open("receipt.txt", "w")
+
+        if self.protein == 8.50 :
+            f.write("You Have Chosen a Chicken Pizza"  + "\n")
+        elif self.protein == 10.50:
+            f.write("You Have Chosen a Beef Pizza" + "\n")
+        elif self.protein == 11.50:
+            f.write("You Have Chosen a Fish Pizza" + "\n")
+
+        if self.sauce == "Spicy" :
+            f.write("You Have Chosen a Spicy Sauce" + "\n")
+        if self.sauce == "Mild" :
+            f.write("You Have Chosen a Mild Sauce" + "\n")
+        if self.sauce == "Normal" :
+            f.write("You Have Chosen a Normal Sauce" + "\n")
+
+        if self.type == "Sliced":
+            f.write("You Have Chosen Your Pizza to be Sliced" + "\n")
+        if self.type == "UnSliced":
+            f.write("You Have Chosen Your Pizza to be UnSliced" + "\n")
 
 
-    def receive_data(self, vegetable, protein):
+        tip = self.label_9.text()
+        tax = str(self.tax)
+        bill = str(self.bill)
+        total = str(self.total_bill)
+
+        f.write("Bill            :    " + bill + "\n")
+        f.write("Tip             :    " + tip + "\n")
+        f.write("7 % tax         :    " + tax + "\n")
+        f.write("Total_Bill      :    " +  total + "\n")
+        f.close()
+
+        # open and read the file after the overwriting:
+        f = open("receipt.txt", "r")
+        print(f.read())
+
+    def receive_data(self, vegetable, protein, sauce, type):
 
         self.vegetable = vegetable
         self.protein = protein
+        self.sauce = sauce
+        self.type = type
+
+    def receive_data2(self, sauce2, type2):
+        self.sauce2 = sauce2
+        self.type2 = type2
 
 
 if __name__ == "__main__":
