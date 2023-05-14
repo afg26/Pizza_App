@@ -5,6 +5,7 @@ from PyQt5.QtCore import QSize
 from  make_your_own import Ui_make_your_own_window
 from simple_pizza import Ui_simple_pizza_window
 from about_window import Ui_about_window
+from help_window import Ui_help_window
 
 
 
@@ -21,6 +22,11 @@ class Ui_MainWindow(object):
     def about_window(self):
         self.__about = about
         self.__about.show()
+
+    def help_window(self):
+        self._help = open_help
+        self._help.show()
+
 
 
     def close_window(self):
@@ -56,7 +62,7 @@ class Ui_MainWindow(object):
         self.button03 = QtWidgets.QPushButton(self.frame, clicked = lambda: self.about_window())
         self.button03.setGeometry(QtCore.QRect(360, 10, 141, 28))
         self.button03.setObjectName("button03")
-        self.button04 = QtWidgets.QPushButton(self.frame)
+        self.button04 = QtWidgets.QPushButton(self.frame, clicked = lambda: self._help())
         self.button04.setGeometry(QtCore.QRect(530, 10, 141, 28))
         self.button04.setObjectName("button04")
         MainWindow.setCentralWidget(self.centralwidget)
@@ -100,6 +106,9 @@ if __name__ == "__main__":
     about_window_ui = Ui_about_window()
     about_window_ui.setupUi(about)
 
+    open_help = QtWidgets.QMainWindow()
+    help_window_ui = Ui_help_window()
+    help_window_ui.setupUi(open_help)
 
     MainWindow.show()
     sys.exit(app.exec_())

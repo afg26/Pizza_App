@@ -190,7 +190,7 @@ class Ui_payment_window(object):
         self.label_9.setText("")
         self.label_10.setText("")
         self.label_11.setText("")
-        self.tb_2.setEnabled(False)
+
 
         f = open("receipt.txt", "w")
 
@@ -210,7 +210,7 @@ class Ui_payment_window(object):
 
             self.total_bill1 = round((self.bill1 + self.tax1 + self.tip1) , 2)
             self.label_11.setText(str("%.2f" % self.total_bill1))
-            self.tb_2.setEnabled(True)
+            self.tb_2.setEnabled(False)
 
         elif self.sauce2 == "Mild" :
             f.write("You Have Chosen a Mild Sauce" + "\n")
@@ -227,7 +227,7 @@ class Ui_payment_window(object):
 
             self.total_bill1 = round((self.bill1 + self.tax1 + self.tip1) , 2)
             self.label_11.setText(str("%.2f" % self.total_bill1))
-            self.tb_2.setEnabled(True)
+            self.tb_2.setEnabled(False)
 
 
         elif self.sauce2 == "Normal" :
@@ -245,7 +245,7 @@ class Ui_payment_window(object):
 
             self.total_bill1 = round((self.bill1 + self.tax1 + self.tip1) , 2)
             self.label_11.setText(str("%.2f" % self.total_bill1))
-            self.tb_2.setEnabled(True)
+            self.tb_2.setEnabled(False)
 
 
         if self.type2 == "Sliced":
